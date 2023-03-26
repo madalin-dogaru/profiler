@@ -3,21 +3,19 @@
 Target profiling for red teaming exercises.
 ---
 
-Usage
+Examples
 ---
-```
-profiler.py [-h] [-npath NAMES_FILE] [-dpath EMAIL_DOMAIN] [-pgen VALUES_FILE] [-cprofile PROFILE_NAME]
+1. Take a list of IP's, get their Country/City/Area and write it in a file(including the IPs). 
+`python3 profiler.py -iplist file_containing_ips -o output_file_name`
 
-Create email addresses from a file with names and surnames, generate combinations of specified values, and create a profile file.
+2. Take a list of domains, get their IPs/Country/City/Area and write it in a file.
+`python3 profiler.py -dlist file_containing_domains -o output_file_name`
 
-options:
-  -h, --help            show this help message and exit
-  -npath NAMES_FILE, --names-file NAMES_FILE
-                        Path to the file containing names and surnames.
-  -dpath EMAIL_DOMAIN, --email-domain EMAIL_DOMAIN
-                        Email domain, e.g., @microsoft.com
-  -pgen VALUES_FILE, --values-file VALUES_FILE
-                        Path to the file containing values for combinations.
-  -cprofile PROFILE_NAME, --profile-name PROFILE_NAME
-                        Profile name to create a new profile file.
-```
+3. Specify a single domain and print on the terminal the IP/Country/City/Area.
+`python3 profiler.py -d zf.ro`
+
+4. Specify a single IP and print on the terminal the IP/Country/City/Area.
+`python3 profiler.py -ip zf.ro`
+
+5. The non so beautiful help. 
+`python3 profiler.py -h`   
