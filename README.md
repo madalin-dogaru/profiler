@@ -39,5 +39,5 @@ Examples
 5. Specify a single IP and print in the terminal the IP/Country/City/Area.   
 `python3 profiler.py -ip zf.ro`
 
-6. The not so beautiful help.    
+6. The not so beautiful help menu.    
 `python3 profiler.py -h`   
