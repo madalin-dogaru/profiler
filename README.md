@@ -1,5 +1,5 @@
 
-<img align="left" alt="PNG" src="https://raw.githubusercontent.com/madalin-dogaru/madalin-dogaru/master/profiler-logo.png?raw=true" width="370" height="493" />
+<img align="right" alt="PNG" src="https://raw.githubusercontent.com/madalin-dogaru/madalin-dogaru/master/profiler-logo.png?raw=true" width="370" height="493" />
 
 # Profiler   
 
@@ -14,7 +14,6 @@ Install
 ##### 2.Install requirements:   
 `pip install -r requirements.txt`   
 
-#   
 #   
 #   
 
