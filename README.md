@@ -1,8 +1,10 @@
-![profiler_logo](https://user-images.githubusercontent.com/34633522/227782206-76a478c0-7197-4a6c-8631-4b8bbf44dee3.jpg)
+
+<img align="left" alt="PNG" src="https://raw.githubusercontent.com/madalin-dogaru/madalin-dogaru/master/profiler-logo.png?raw=true" width="400" height="533" />
+
 # Profiler   
 
-Target profiling for red teaming exercises.
----
+Target profiling tool for red teaming exercises. Currently its a simple tool that can be used to gather more information about IPs and domains but more features are on their way with which will focus on creating a profile of individuals or teams.    
+
 
 Install
 ---
@@ -12,6 +14,11 @@ Install
 ##### 2.Install requirements:   
 `pip install -r requirements.txt`   
 
+#   
+#   
+#   
+#   
+#   
 
 Examples
 ---
