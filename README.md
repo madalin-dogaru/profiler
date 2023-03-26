@@ -17,8 +17,6 @@ Install
 #   
 #   
 #   
-#   
-#   
 
 Examples
 ---
