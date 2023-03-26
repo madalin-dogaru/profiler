@@ -1,7 +1,17 @@
+![profiler_logo](https://user-images.githubusercontent.com/34633522/227782206-76a478c0-7197-4a6c-8631-4b8bbf44dee3.jpg)
 # Profiler   
 
 Target profiling for red teaming exercises.
 ---
+
+Install
+---
+##### 1.Clone it:   
+`git clone https://github.com/madalin-dogaru/profiler.git` 
+
+##### 2.Install requirements:   
+`pip install -r requirements.txt`   
+
 
 Examples
 ---
