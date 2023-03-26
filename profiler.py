@@ -12,6 +12,41 @@ class ColoredArgumentParser(argparse.ArgumentParser):
         self.print_usage(sys.stderr)
         self.exit(2, "%s: error: %s\n" % (colored(self.prog, "red"), colored(message, "red")))
 
+class EmailGenerator:
+    def __init__(self, firstname_lastname_list, domain):
+        self.firstname_lastname_list = firstname_lastname_list
+        self.domain = domain
+
+    def generate_emails(self, users):
+        emails = []
+        for firstname, lastname in users:
+            emails.append(f'{firstname}.{lastname}@{self.domain}')
+            emails.append(f'{lastname}.{firstname}@{self.domain}')
+            emails.append(f'{firstname}_{lastname}@{self.domain}')
+            emails.append(f'{lastname}_{firstname}@{self.domain}')
+            emails.append(f'{firstname}-{lastname}@{self.domain}')
+            emails.append(f'{lastname}-{firstname}@{self.domain}')
+            emails.append(f'{firstname}{lastname}@{self.domain}')
+            emails.append(f'{lastname}{firstname}@{self.domain}')
+            emails.append(f'{firstname[0]}{lastname}@{self.domain}')
+            emails.append(f'{lastname[0]}{firstname}@{self.domain}')
+            emails.append(f'{firstname}@{self.domain}')
+            emails.append(f'{lastname}@{self.domain}')
+        return emails
+
+    def process_name_list(self, output_handle):
+        users = []
+        with open(self.firstname_lastname_list, "r") as name_file:
+            for line in name_file:
+                firstname, lastname = line.strip().split()
+                users.append((firstname, lastname))
+
+        emails = self.generate_emails(users)
+        for email in emails:
+            if output_handle:
+                output_handle.write(email + "\n")
+                output_handle.flush()
+
 class URLScanner:
     def __init__(self, folder_path):
         self.folder_path = folder_path
@@ -91,6 +126,8 @@ def parse_arguments():
     parser.add_argument('-dlist', help='Path to the file containing the list of domain names.')
     parser.add_argument('-url', help='Path to the folder containing files to scan for URLs.')
     parser.add_argument('-o', '--output-file', help='Path to the output file.')
+    parser.add_argument('-egen', help='Path to the file containing the firstname and lastname pairs.')
+    parser.add_argument('-edom', help='The email domain to be used for generating email addresses.')
     return parser.parse_args()
 
 def process_url_scan(folder_path, output_handle):
@@ -111,17 +148,21 @@ def main():
     domain_list = args.dlist
     folder_path = args.url
     output_file = args.output_file
+    firstname_lastname_list = args.egen
+    email_domain = args.edom
 
     output_handle = open(output_file, "w") if output_file else None
-
-    ip_info = IPInfo(output_handle)
-    domain_info = DomainInfo(output_handle)
-
-    if input_file:
+    if firstname_lastname_list and email_domain:
+        email_generator = EmailGenerator(firstname_lastname_list, email_domain)
+        email_generator.process_name_list(output_handle)
+    elif input_file:
+        ip_info = IPInfo(output_handle)
         ip_info.process_ip_list(input_file)
     elif domain_list:
+        domain_info = DomainInfo(output_handle)
         domain_info.process_domain_list(domain_list)
     elif single_ip:
+        ip_info = IPInfo(output_handle)
         result = ip_info.get_ip_info(single_ip)
         if result:
             print(result)
@@ -129,8 +170,10 @@ def main():
                 output_handle.write(result + "\n")
                 output_handle.flush()
     elif domain:
+        domain_info = DomainInfo(output_handle)
         ip = domain_info.get_domain_ip(domain)
         if ip:
+            ip_info = IPInfo(output_handle)
             result = ip_info.get_ip_info(ip)
             if result:
                 print(result)
