@@ -3,6 +3,7 @@ from email_generator import EmailGenerator
 from url_scanner import URLScanner
 from ip_info import IPInfo
 from domain_info import DomainInfo
+from termcolor import colored
 
 # Function for parsing command line arguments
 def parse_arguments():
