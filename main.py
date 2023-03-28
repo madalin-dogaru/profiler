@@ -4,6 +4,8 @@ from url_scanner import URLScanner
 from ip_info import IPInfo
 from domain_info import DomainInfo
 from termcolor import colored
+from godaddy_search import query_similar_domains
+
 
 # Function for parsing command line arguments
 def parse_arguments():
@@ -16,6 +18,8 @@ def parse_arguments():
     parser.add_argument('-o', '--output-file', help='Path to the output file.')
     parser.add_argument('-egen', help='Path to the file containing the firstname and lastname pairs.')
     parser.add_argument('-edom', help='The email domain to be used for generating email addresses.')
+    parser.add_argument('-daddy', help='The domain to search for similar domains using GoDaddy API.')
+
     return parser.parse_args()
 
 # Function for processing URL scans
@@ -60,6 +64,7 @@ def main():
             if output_handle:
                 output_handle.write(result + "\n")
                 output_handle.flush()
+    
     elif domain:
         domain_info = DomainInfo(output_handle)
         ip = domain_info.get_domain_ip(domain)
@@ -73,6 +78,10 @@ def main():
                     output_handle.flush()
     elif folder_path:
         process_url_scan(folder_path, output_handle)
+
+    elif args.daddy:
+        query_similar_domains(args.daddy)
+
     else:
         print(colored("Please provide either a single IP (-ip), a domain (-d), a list of IPs (-iplist), a list of domains (-dlist), or a folder to scan for URLs (-url).", "yellow"))
 
