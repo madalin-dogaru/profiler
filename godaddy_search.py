@@ -1,13 +1,13 @@
 import argparse
 import requests
 
-API_KEY = 'your_api_key'
-API_SECRET = 'your_api_secret'
+API_KEY = 'gHVWzYDGHTs5_PJ63J1MtGbZmxZoxcb2iyK'
+API_SECRET = 'FDqRjsyoSor5n1M8ypNFfS'
 GODADDY_API_ENDPOINT = 'https://api.godaddy.com/v1/domains/available'
 
 def query_similar_domains(domain):
     headers = {
-        'Authorization': f'sso-key gHVWzYDGHTs5_PJ63J1MtGbZmxZoxcb2iyK:FDqRjsyoSor5n1M8ypNFfS',
+        'Authorization': f'sso-key {API_KEY}:{API_SECRET}',
         'Accept': 'application/json'
     }
     params = {
