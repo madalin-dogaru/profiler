@@ -82,7 +82,7 @@ def main():
         process_url_scan(folder_path, output_handle)
 
     if args.daddy:
-        similar_domains = generate_similar_domains(args.daddy, num_domains=10)
+        similar_domains = generate_similar_domains(args.daddy)
         for domain in similar_domains:
             query_similar_domains(domain)
 
