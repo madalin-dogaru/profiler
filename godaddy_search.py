@@ -1,9 +1,9 @@
 import itertools
 import requests
 
-def generate_similar_domains(domain, num_domains=3):
+def generate_similar_domains(domain, num_domains=20):
     words = domain.split(".")[0].split("-")
-    tlds = [".com", ".net", ".org", ".io", ".co"]
+    tlds = [".com", ".net", ".org", ".io", ".co",".ai", ".app", ".au", ".at", ".ca",".cc", ".ch", ".de", ".cz", ".es",".fr", ".gg", ".gs", ".in", ".inc"]
     similar_domains = set()
 
     for tld in tlds:
