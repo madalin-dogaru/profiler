@@ -13,20 +13,31 @@ substitutions = {
 }
 
 def query_similar_domains(domain: str):
-    similar_domains = generate_similar_domains(domain, num_domains=20)
+    similar_domains = generate_similar_domains(domain, num_domains=10)
     check_availability(similar_domains)
 
-def generate_similar_domains(domain: str, num_domains: int = 10) -> List[str]:
-    domain_variation = character_substitution(domain)
-    
-    domains = [domain_variation]
+def generate_similar_domains(domain):
+    substitutions = {
+        'o': '0',
+        'l': '1',
+        'i': '1',
+        'a': '4',
+        's': '5',
+        't': '7',
+    }
 
-    while len(domains) < num_domains:
-        new_domain = character_substitution(domain)
-        if new_domain not in domains:
-            domains.append(new_domain)
+    name, tld = domain.rsplit('.', 1)
+    last_two_chars = name[-2:]
+    name_prefix = name[:-2]
 
-    return domains
+    result = []
+
+    for i, char1 in enumerate(last_two_chars):
+        for char2 in substitutions.get(char1, char1):
+            new_word = name_prefix + last_two_chars[:i] + char2 + last_two_chars[i + 1:] + '.' + tld
+            result.append(new_word)
+
+    return result
 
 def character_substitution(word: str) -> str:
     last_two_chars = word[-2:]
