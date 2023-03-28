@@ -7,6 +7,7 @@ from termcolor import colored
 from godaddy_search import query_similar_domains
 
 
+
 # Function for parsing command line arguments
 def parse_arguments():
     parser = ColoredArgumentParser(description='Get IP information and save to a file.')
