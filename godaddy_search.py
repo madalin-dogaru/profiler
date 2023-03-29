@@ -2,9 +2,9 @@ import itertools
 import requests
 from termcolor import colored
 
-def generate_similar_domains(domain, num_domains=10):
+def generate_similar_domains(domain, num_domains = 10):
     words = domain.split(".")[0].split("-")
-    tlds = [".com", ".net", ".org", ".io", ".co", ".ai", ".us", ".co", ".de"]
+    tlds = [".com", ".net", ".org", ".io", ".co", ".ai", ".us", ".de"]
     similar_domains = set()
 
     for tld in tlds:
@@ -27,7 +27,7 @@ def check_domain_availability(domain):
 
     url = f'https://api.godaddy.com/v1/domains/available?domain={domain}'
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers = headers)
 
     if response.status_code == 200:
         domain_info = response.json()
@@ -47,7 +47,7 @@ def replace_domain_characters(domain, replacements):
     return replaced_domains
 
 
-def query_similar_domains(domain, replacements=None):
+def query_similar_domains(domain, replacements = None):
     if replacements:
         replaced_domains = replace_domain_characters(domain, replacements)
         for replaced_domain in replaced_domains:
