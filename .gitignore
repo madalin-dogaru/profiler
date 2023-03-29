@@ -1,0 +1,5 @@
+# Compilation Trash #
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
