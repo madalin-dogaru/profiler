@@ -6,7 +6,7 @@
 Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
 This will be a target profiling tool used in red teaming exercises. Currently still prototyping and testing various features so this is the moment when new ideas have the most impact on development.  
 
-In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)) so you can test things faster. These are test accounts that contain nothing, feel free to test away.  
+In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are test accounts that will be deleted.   
 
 Install
 ---
