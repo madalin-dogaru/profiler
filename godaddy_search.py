@@ -1,19 +1,22 @@
+import itertools
 import requests
-from typing import List
-from domain_generator import generate_similar_domains, generate_domain_variations
 
-def check_domain_availability(domain: str, headers: dict) -> bool:
-    url = f'https://api.godaddy.com/v1/domains/available?domain={domain}'
-    response = requests.get(url, headers=headers)
+def generate_similar_domains(domain, num_domains=3):
+    words = domain.split(".")[0].split("-")
+    tlds = [".com", ".net", ".org", ".io", ".co"]
+    similar_domains = set()
 
-    if response.status_code == 200:
-        domain_info = response.json()
-        return domain_info['available']
-    else:
-        print(f"Error occurred: {response.status_code} - {response.text}")
-        return False
+    for tld in tlds:
+        for perm in itertools.permutations(words):
+            similar_domain = "-".join(perm) + tld
+            if similar_domain != domain:
+                similar_domains.add(similar_domain)
+                if len(similar_domains) >= num_domains:
+                    return similar_domains
 
-def query_similar_domains(domain: str):
+    return similar_domains
+
+def check_domain_availability(domain):
     api_key = 'gHVWzYDGHTs5_PJ63J1MtGbZmxZoxcb2iyK'
     api_secret = 'FDqRjsyoSor5n1M8ypNFfS'
 
@@ -21,10 +24,22 @@ def query_similar_domains(domain: str):
         'Authorization': f'sso-key {api_key}:{api_secret}',
     }
 
-    similar_domains = generate_similar_domains(domain)
-    domain_variations = generate_domain_variations(domain)
-    unique_domains = list(set(similar_domains + domain_variations))
+    url = f'https://api.godaddy.com/v1/domains/available?domain={domain}'
 
-    for domain in unique_domains:
-        is_available = check_domain_availability(domain, headers)
-        print(f"{domain} is {'available' if is_available else 'not available'}")
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        domain_info = response.json()
+        return domain_info['available']
+    else:
+        return None
+
+def query_similar_domains(domain):
+    similar_domains = generate_similar_domains(domain)
+
+    for domain in similar_domains:
+        is_available = check_domain_availability(domain)
+        if is_available is None:
+            print(f"Error occurred while checking {domain}")
+        else:
+            print(f"{domain} is {'available' if is_available else 'not available'}")

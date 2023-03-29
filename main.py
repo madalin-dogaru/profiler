@@ -5,7 +5,6 @@ from ip_info import IPInfo
 from domain_info import DomainInfo
 from termcolor import colored
 from godaddy_search import query_similar_domains
-from godaddy_search import generate_similar_domains
 
 
 
@@ -81,10 +80,8 @@ def main():
     elif folder_path:
         process_url_scan(folder_path, output_handle)
 
-    if args.daddy:
-        similar_domains = generate_similar_domains(args.daddy)
-        for domain in similar_domains:
-            query_similar_domains(domain)
+    elif args.daddy:
+        query_similar_domains(args.daddy)
 
     else:
         print(colored("Please provide either a single IP (-ip), a domain (-d), a list of IPs (-iplist), a list of domains (-dlist), or a folder to scan for URLs (-url).", "yellow"))

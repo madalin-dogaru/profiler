@@ -28,9 +28,6 @@ For -url,
 2. Read firstname/lastname from a file(1 pair per line) and the email domain and output all possible emails in a file.    
 `python3 main.py -egen names -edom microsoft.com -o test`   
 
-3. Use GoDaddy API to search for domains similar to the ones you supply. Limit set to 20, modifiable from godaddy_search.py/generate_similar_domains.  
-`python3 main.py -daddy skinyduck.com`
-
 3. Take a list of IP's, get their Country/City/Area and write it in a file(including the IPs).    
 `python3 main.py -iplist file_containing_ips -o output_file_name`
 
