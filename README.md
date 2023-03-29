@@ -3,7 +3,7 @@
 
 # Profiler   
 
-Yes, I know, someone somwhere created a tool that does this. I just want to create my own :) 
+Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
 
 This will be a target profiling tool used in red teaming exercises. 
 
@@ -19,8 +19,6 @@ Install
 `pip install -r requirements.txt`   
 
 #   
-#   
-#   
 
 Examples
 ---
@@ -30,7 +28,7 @@ Scan all the files inside a folder for URLs and print them in the terminal. Or a
 `python3 main.py -url ~/path/to/folder`
 
 #### -egen :
-Read firstname/lastname from a file(1 pair per line) and the email domain and output all possible emails in a file.     
+Read firstname/lastname from a file(1 pair per line) and the email domain and output all common emails in a file.     
 `python3 main.py -egen names -edom microsoft.com -o test`
 
 #### -daddy :
