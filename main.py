@@ -5,6 +5,7 @@ from ip_info import IPInfo
 from domain_info import DomainInfo
 from termcolor import colored
 from godaddy_search import query_similar_domains
+from godaddy_search import replace_domain_characters
 
 
 
@@ -19,7 +20,8 @@ def parse_arguments():
     parser.add_argument('-o', '--output-file', help='Path to the output file.')
     parser.add_argument('-egen', help='Path to the file containing the firstname and lastname pairs.')
     parser.add_argument('-edom', help='The email domain to be used for generating email addresses.')
-    parser.add_argument('-daddy', help='The domain to search for similar domains using GoDaddy API.')
+    parser.add_argument('-daddy', help='Search for other available domain suffixes on GoDaddy.com, for a specific domain.')
+    parser.add_argument('-domphish', help='Search for similarly looking domains for a user supplied domain.')
 
     return parser.parse_args()
 
@@ -47,6 +49,25 @@ def main():
     email_domain = args.edom
     
     output_handle = open(output_file, "w") if output_file else None
+
+    if args.domphish:
+        # Define the character replacements here
+        replacements = {
+            'o': '0',
+            '0': 'o',
+            'i': 'l',
+            'l': 'i',
+            'g': 'q',
+            'q': 'g',
+            'm': 'n',
+            'n': 'm',
+            'u': 'v',
+            'v': 'u',
+            '1': 'l',
+            'l': '1',
+        }
+        query_similar_domains(args.domphish, replacements)
+        return
 
     if firstname_lastname_list and email_domain:
         email_generator = EmailGenerator(firstname_lastname_list, email_domain)
