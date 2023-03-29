@@ -2,11 +2,10 @@
 <img align="left" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/profiler_logo.png?raw=true" width="350" height="488" />
 
 # Profiler   
-
 Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
-This will be a target profiling tool used in red teaming exercises. Currently still prototyping and testing various features so this is the moment when new ideas have the most impact on development.  
+This will be a target profiling tool used in red teaming exercises. Currently still prototyping and testing various features so this is the moment when new ideas have the most impact on development.   
 
-In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are test accounts that will be deleted.   
+In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted.  
 
 Install
 ---
@@ -15,8 +14,6 @@ Install
 
 ##### 2.Install requirements:   
 `pip install -r requirements.txt`   
-
-#   
 
 Examples
 ---
