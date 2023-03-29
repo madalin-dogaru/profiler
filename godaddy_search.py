@@ -1,9 +1,10 @@
 import itertools
 import requests
+from termcolor import colored
 
-def generate_similar_domains(domain, num_domains=3):
+def generate_similar_domains(domain, num_domains=10):
     words = domain.split(".")[0].split("-")
-    tlds = [".com", ".net", ".org", ".io", ".co"]
+    tlds = [".com", ".net", ".org", ".io", ".co", ".ai", ".us", ".co", ".de"]
     similar_domains = set()
 
     for tld in tlds:
@@ -34,12 +35,39 @@ def check_domain_availability(domain):
     else:
         return None
 
-def query_similar_domains(domain):
-    similar_domains = generate_similar_domains(domain)
+def replace_domain_characters(domain, replacements):
+    replaced_domains = []
+    domain_name, tld = domain.rsplit(".", 1)
+    for index, char in enumerate(domain_name):
+        if char in replacements:
+            replacement = replacements[char]
+            new_domain_name = domain_name[:index] + replacement + domain_name[index + 1:]
+            new_domain = new_domain_name + "." + tld
+            replaced_domains.append(new_domain)
+    return replaced_domains
 
-    for domain in similar_domains:
-        is_available = check_domain_availability(domain)
-        if is_available is None:
-            print(f"Error occurred while checking {domain}")
-        else:
-            print(f"{domain} is {'available' if is_available else 'not available'}")
+
+def query_similar_domains(domain, replacements=None):
+    if replacements:
+        replaced_domains = replace_domain_characters(domain, replacements)
+        for replaced_domain in replaced_domains:
+            is_available = check_domain_availability(replaced_domain)
+            if is_available is None:
+                print(f"Error occurred while checking {replaced_domain}")
+            else:
+                if is_available:
+                    print(colored(f"{replaced_domain} is available", 'green'))
+                else:
+                    print(colored(f"{replaced_domain} is not available", 'grey'))
+    else:
+        similar_domains = generate_similar_domains(domain)
+
+        for domain in similar_domains:
+            is_available = check_domain_availability(domain)
+            if is_available is None:
+                print(f"Error occurred while checking {domain}")
+            else:
+                if is_available:
+                    print(colored(f"{domain} is available", 'green'))
+                else:
+                    print(colored(f"{domain} is not available", 'grey'))
