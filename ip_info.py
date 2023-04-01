@@ -11,7 +11,12 @@ class IPInfo:
         data = json.loads(response.content)
 
         if data["status"] == "success":
-            result = f"{ip},{data['country']},{data['regionName']},{data['city']}"
+            green_ip = colored(ip, "green")
+            cyan_country = colored(data['country'], "light_cyan")
+            white_city = colored(data['city'], "white")
+            dark_region = colored(data['regionName'], "dark_grey")
+
+            result = f"{green_ip},{cyan_country},{white_city},{dark_region}"
             return result
         else:
             print(colored(f"Failed to retrieve information for IP: {ip}", "red"))
