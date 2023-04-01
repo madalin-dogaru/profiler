@@ -12,15 +12,15 @@ from godaddy_search import replace_domain_characters
 # Function for parsing command line arguments
 def parse_arguments():
     parser = ColoredArgumentParser(description='Get IP information and save to a file.')
-    parser.add_argument('-iplist', help='Path to the file containing the list of IP addresses.')
-    parser.add_argument('-ip', help='A single IP address to get information.')
-    parser.add_argument('-d', '--domain', help='A single domain name to get information.')
-    parser.add_argument('-dlist', help='Path to the file containing the list of domain names.')
-    parser.add_argument('-url', help='Path to the folder containing files to scan for URLs.')
-    parser.add_argument('-o', '--output-file', help='Path to the output file.')
+    parser.add_argument('-iplist', help='Specify a file with IPs, 1 per line, to get their COUNTRY|CITY|AREA.')
+    parser.add_argument('-ip', help='Specify an IP to get its COUNTRY|CITY|AREA.')
+    parser.add_argument('-d', '--domain', help='Specify a Domain to get its IP|COUNTRY|CITY|AREA.')
+    parser.add_argument('-dlist', help='Specify a file with Domains, 1 per line, to get their IP|COUNTRY|CITY|AREA.')
+    parser.add_argument('-url', help='Specify a folder path to get all URLs inside its files')
+    parser.add_argument('-o', '--output-file', help='Name of the output file.')
     parser.add_argument('-egen', help='Path to the file containing the firstname and lastname pairs.')
-    parser.add_argument('-edom', help='The email domain to be used for generating email addresses.')
-    parser.add_argument('-daddy', help='Search for other available domain suffixes on GoDaddy.com, for a specific domain.')
+    parser.add_argument('-edom', help='Specify a domain name to be combined with the names specified with -egen')
+    parser.add_argument('-daddy', help='Specify a domain and get other available domain suffixes on GoDaddy.com.')
     parser.add_argument('-domphish', help='Search for similarly looking domains for a user supplied domain.')
 
     return parser.parse_args()
@@ -103,6 +103,7 @@ def main():
 
     elif args.daddy:
         query_similar_domains(args.daddy)
+        
 
     else:
         print(colored("Please provide either a single IP (-ip), a domain (-d), a list of IPs (-iplist), a list of domains (-dlist), or a folder to scan for URLs (-url).", "yellow"))
