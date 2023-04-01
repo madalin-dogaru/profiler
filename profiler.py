@@ -1,3 +1,13 @@
+"""
+Title: snyker
+Author: Mădălin Dogaru
+Discord: The Wallachian#4651
+Date: 25-03-2023
+Version: v0.1
+License: MIT
+Description: A Red Teaming tool focused on profiling the target.
+"""
+
 from colored_argument_parser import ColoredArgumentParser
 from email_generator import EmailGenerator
 from url_scanner import URLScanner
