@@ -1,5 +1,5 @@
 """
-Title: snyker
+Title: profiler
 Author: Mădălin Dogaru
 Discord: The Wallachian#4651
 Date: 25-03-2023
