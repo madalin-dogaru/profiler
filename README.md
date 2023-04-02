@@ -17,7 +17,7 @@ Install
 #   
 Examples
 ---
-In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted, in the future you will need various APIs for take full advantage of Profiler.   
+In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted, in the future you will will need various APIs for take full advantage of Profiler.   
 
 #### -url : 
 Scan all the files inside a folder for URLs and print them in the terminal. Or add -o and give it a file to the write the info in.    
