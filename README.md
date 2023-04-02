@@ -3,7 +3,7 @@
 
 # Profiler   
 Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
-This will be a target profiling tool used in red teaming exercises. Currently still prototyping and testing various features so if you have any ideas, this is the moment when they will have the most impact on development.   
+This will be a target profiling tool used in red teaming exercises. Currently still prototyping and testing various features, so if you have any ideas, this is the moment when they will have the most impact on development.   
 
 Install
 ---
@@ -17,7 +17,7 @@ Install
 #   
 Examples
 ---
-In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted, in the future you will will need various APIs for take full advantage of Profiler.   
+In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted. In the future you will need various APIs for take full advantage of Profiler.   
 
 #### -url : 
 Scan all the files inside a folder for URLs and print them in the terminal. Or add -o and give it a file to the write the info in.    
