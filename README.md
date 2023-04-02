@@ -33,7 +33,7 @@ Supply a domain and get other available suffixes on goddady.com (requires API to
 
 #### -domphish :
 Supply a domain and get similarly looking domains for that domain and suffix that are available on godaddy.com. (requires API token)   
-`profiler.py -domphish microsoft.com`
+`python3 profiler.py -domphish microsoft.com`
 
 #### -iplist :
 Take a list of IP's, get their Country/City/Area and write it in a file(including the IPs).    
