@@ -15,7 +15,7 @@ from ip_info import IPInfo
 from domain_info import DomainInfo
 from termcolor import colored
 from godaddy_search import query_similar_domains
-from godaddy_search import replace_domain_characters
+from dorks_search import google_dork
 
 
 
@@ -32,6 +32,8 @@ def parse_arguments():
     parser.add_argument('-edom', help='Specify a domain name to be combined with the names specified with -egen')
     parser.add_argument('-daddy', help='Specify a domain and get other available domain suffixes on GoDaddy.com.')
     parser.add_argument('-domphish', help='Search for similarly looking domains for a user supplied domain.')
+    parser.add_argument('-dork', help='Specify a domain name for Google Dork search.')
+    parser.add_argument('-f', help='Specify a file containing Google dorks (one per line).')
 
     return parser.parse_args()
 
@@ -57,6 +59,8 @@ def main():
     output_file = args.output_file
     firstname_lastname_list = args.egen
     email_domain = args.edom
+    gdork_domain = args.dork
+    gdork_file = args.f
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -113,7 +117,9 @@ def main():
 
     elif args.daddy:
         query_similar_domains(args.daddy)
-        
+    
+    elif gdork_domain and gdork_file:
+        google_dork(gdork_domain, gdork_file)
 
     else:
         print(colored("Go quickly to the help section (-h), you really screwed the pooch.", "yellow"))

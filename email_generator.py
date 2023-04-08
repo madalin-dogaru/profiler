@@ -1,3 +1,13 @@
+"""
+Title: profiler
+Author: Mădălin Dogaru
+Discord: The Wallachian#4651
+Date: 25-03-2023
+Version: v0.1
+License: MIT
+Description: A Red Teaming tool focused on profiling the target.
+"""
+
 class EmailGenerator:
     def __init__(self, firstname_lastname_list, domain):
         self.firstname_lastname_list = firstname_lastname_list
