@@ -1,3 +1,13 @@
+"""
+Title: profiler
+Author: Mădălin Dogaru
+Discord: The Wallachian#4651
+Date: 25-03-2023
+Version: v0.1
+License: MIT
+Description: A Red Teaming tool focused on profiling the target.
+"""
+
 import socket
 from termcolor import colored
 from ip_info import IPInfo
