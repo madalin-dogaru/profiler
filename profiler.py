@@ -116,7 +116,7 @@ def main():
         
 
     else:
-        print(colored("Please provide either a single IP (-ip), a domain (-d), a list of IPs (-iplist), a list of domains (-dlist), or a folder to scan for URLs (-url).", "yellow"))
+        print(colored("Go quickly to the help section (-h), you really screwed the pooch.", "yellow"))
 
     if output_handle:
         output_handle.close()
