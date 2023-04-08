@@ -122,7 +122,7 @@ def main():
         google_dork(gdork_domain, gdork_file)
 
     else:
-        print(colored("Ohh man, please check the help, you really screwed the pooch  ", "yellow"))
+        print(colored("Go quickly to the help section (-h), you really screwed the pooch.", "yellow"))
 
     if output_handle:
         output_handle.close()
