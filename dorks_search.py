@@ -7,7 +7,7 @@ Version: v0.1
 License: MIT
 Description: A Red Teaming tool focused on profiling the target.
 """
-
+import os
 from serpapi import GoogleSearch
 
 def read_dorks_from_file(file_path):
@@ -16,6 +16,9 @@ def read_dorks_from_file(file_path):
     return dorks
 
 def google_dork(domain, dorks_file):
+    if not os.path.isfile(dorks_file):
+        print(f"\033[91mError: The file '{dorks_file}' does not exist. Please provide a valid file path.\033[0m")
+        return
     dorks = read_dorks_from_file(dorks_file)
 
     # Replace "your_api_key" with your SerpApi key
