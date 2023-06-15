@@ -27,7 +27,7 @@ Use the power of Holehe to check on what websites a user created accounts. I've 
 Perform powerful Google dorks searches using SerpApi integration: You need to supply a file with google dorks(one per line) and a target domain. You need an SerpAPI API key.    
 `python3 profiler.py -dork smartree.com -f workfiles/dorks_list_file_name`   
 
-<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/google_dork_example.png?raw=true" width="600" height="360" />   
+<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/google_dork_example.png?raw=true" width="650" height="430" />   
 
 
 
