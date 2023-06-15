@@ -1,5 +1,5 @@
 
-<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/profilerlogo.png?raw=true" width="1200" height="190" />
+<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/profilerlogo.png?raw=true" width="1000" height="180" />
 
 # Profiler   
 Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
@@ -23,7 +23,7 @@ In the prototyping phase I will leave some hardcoded API authorization tokens in
 Perform powerful Google dorks searches using SerpApi integration: You need to supply a file with google dorks(one per line) and a target domain. You need an SerpAPI API key.    
 `python3 profiler.py -dork smartree.com -f workfiles/dorks_list_file_name`   
 
-<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/google_dork_example.png?raw=true" width="800" height="480" />   
+<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/google_dork_example.png?raw=true" width="600" height="360" />   
 
 
 
