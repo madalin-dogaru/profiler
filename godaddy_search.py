@@ -1,7 +1,7 @@
 """
 Title: profiler
 Author: Mădălin Dogaru
-Discord: The Wallachian#4651
+Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: MIT
@@ -28,8 +28,8 @@ def generate_similar_domains(domain, num_domains = 10):
     return similar_domains
 
 def check_domain_availability(domain):
-    api_key = 'gHVWzYDGHTs5_PJ63J1MtGbZmxZoxcb2iyK'
-    api_secret = 'FDqRjsyoSor5n1M8ypNFfS'
+    api_key = 'your_api_key'
+    api_secret = 'your_secret'
 
     headers = {
         'Authorization': f'sso-key {api_key}:{api_secret}',
@@ -68,7 +68,7 @@ def query_similar_domains(domain, replacements = None):
                 if is_available:
                     print(colored(f"{replaced_domain} is available", 'green'))
                 else:
-                    print(colored(f"{replaced_domain} is not available", 'grey'))
+                    print(colored(f"{replaced_domain} is not available", 'red'))
     else:
         similar_domains = generate_similar_domains(domain)
 
@@ -80,4 +80,4 @@ def query_similar_domains(domain, replacements = None):
                 if is_available:
                     print(colored(f"{domain} is available", 'green'))
                 else:
-                    print(colored(f"{domain} is not available", 'grey'))
+                    print(colored(f"{domain} is not available", 'red'))

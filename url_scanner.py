@@ -1,7 +1,7 @@
 """
 Title: profiler
 Author: Mădălin Dogaru
-Discord: The Wallachian#4651
+Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: MIT
@@ -29,4 +29,4 @@ class URLScanner:
                     extracted_urls = self.extract_urls(content)
                     urls.extend(extracted_urls)
 
-        return urls
+        return list(set(urls))  # Here we convert the list of URLs to a set (which removes duplicates) and then back to a list
