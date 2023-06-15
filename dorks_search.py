@@ -1,7 +1,7 @@
 """
 Title: profiler
 Author: Mădălin Dogaru
-Discord: The Wallachian#4651
+Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: MIT
@@ -28,7 +28,7 @@ def google_dork(domain, dorks_file):
         dork_with_site = f"site:{domain} {dork}"
         params = {
             "q": dork_with_site,
-            "api_key": api_key,
+            "api_key": "your_api_key",
         }
 
         search = GoogleSearch(params)

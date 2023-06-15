@@ -1,7 +1,7 @@
 """
 Title: profiler
 Author: Mădălin Dogaru
-Discord: The Wallachian#4651
+Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: MIT
@@ -16,6 +16,7 @@ from domain_info import DomainInfo
 from termcolor import colored
 from godaddy_search import query_similar_domains
 from dorks_search import google_dork
+from holehe import EmailProfiler
 
 
 
@@ -34,6 +35,7 @@ def parse_arguments():
     parser.add_argument('-domphish', help='Search for similarly looking domains for a user supplied domain.')
     parser.add_argument('-dork', help='Specify a domain name for Google Dork search.')
     parser.add_argument('-f', help='Specify a file containing Google dorks (one per line).')
+    parser.add_argument('-mails', help='Specify a file containing the emails to be profiled.')
 
     return parser.parse_args()
 
@@ -61,6 +63,7 @@ def main():
     email_domain = args.edom
     gdork_domain = args.dork
     gdork_file = args.f
+    email_file = args.mails
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -86,6 +89,8 @@ def main():
     if firstname_lastname_list and email_domain:
         email_generator = EmailGenerator(firstname_lastname_list, email_domain)
         email_generator.process_name_list(output_handle)
+        return
+    
     elif input_file:
         ip_info = IPInfo(output_handle)
         ip_info.process_ip_list(input_file)
@@ -120,6 +125,13 @@ def main():
     
     elif gdork_domain and gdork_file:
         google_dork(gdork_domain, gdork_file)
+
+    if email_file:
+        profiler = EmailProfiler(email_file)
+        profiler.profile()
+    elif firstname_lastname_list and email_domain:
+        email_generator = EmailGenerator(firstname_lastname_list, email_domain)
+        email_generator.process_name_list(output_handle)
 
     else:
         print(colored("Go quickly to the help section (-h), you really screwed the pooch.", "yellow"))

@@ -1,7 +1,7 @@
 """
 Title: profiler
 Author: Mădălin Dogaru
-Discord: The Wallachian#4651
+Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: MIT
