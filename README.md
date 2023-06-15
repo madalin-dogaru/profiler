@@ -1,5 +1,5 @@
 
-<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/profilerlogo.png?raw=true" width="1000" height="180" />
+<img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/profilerlogo.png?raw=true" width="900" height="150" />
 
 # Profiler   
 Yes, I know, someone somewhere created a tool that does this. I just want to create my own and there's nothing you can do to stop me :) 
