@@ -4,7 +4,7 @@ Author: Mădălin Dogaru
 Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
-License: MIT
+License: GPLv3
 Description: A Red Teaming tool focused on profiling the target.
 """
 
