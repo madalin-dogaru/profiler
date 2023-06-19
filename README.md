@@ -23,6 +23,8 @@ In the prototyping phase I will leave some hardcoded API authorization tokens in
 Use the power of Holehe to check on what websites a user created accounts. I've added functionality so a list of emails can be specified from a file and the results are filtered to show only valid accounts.    
 <img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/account_check.png?raw=true" width="350" height="700" /> 
 
+Additionally ```-om``` or ```--format-csv``` flag can be provided to output the mails in CSV format. 
+
 #### -dork :
 Perform powerful Google dorks searches using SerpApi integration: You need to supply a file with google dorks(one per line) and a target domain. You need an SerpAPI API key.    
 `python3 profiler.py -dork smartree.com -f workfiles/dorks_list_file_name`   

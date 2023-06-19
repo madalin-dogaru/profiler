@@ -16,7 +16,7 @@ from domain_info import DomainInfo
 from termcolor import colored
 from godaddy_search import query_similar_domains
 from dorks_search import google_dork
-from holehe import EmailProfiler
+from holehe import EmailProfiler, EmailProfilerCSV
 
 
 
@@ -36,6 +36,7 @@ def parse_arguments():
     parser.add_argument('-dork', help='Specify a domain name for Google Dork search.')
     parser.add_argument('-f', help='Specify a file containing Google dorks (one per line).')
     parser.add_argument('-mails', help='Specify a file containing the emails to be profiled.')
+    parser.add_argument('-om', '--format-csv', help='Output mails results in CSV format')
 
     return parser.parse_args()
 
@@ -64,6 +65,7 @@ def main():
     gdork_domain = args.dork
     gdork_file = args.f
     email_file = args.mails
+    format_csv = args.format_csv
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -126,9 +128,14 @@ def main():
     elif gdork_domain and gdork_file:
         google_dork(gdork_domain, gdork_file)
 
+
     if email_file:
-        profiler = EmailProfiler(email_file)
-        profiler.profile()
+        if format_csv:
+            profiler = EmailProfilerCSV(email_file, format_csv)
+            profiler.profileCSV()
+        else:
+            profiler = EmailProfiler(email_file)
+            profiler.profile()
     elif firstname_lastname_list and email_domain:
         email_generator = EmailGenerator(firstname_lastname_list, email_domain)
         email_generator.process_name_list(output_handle)
