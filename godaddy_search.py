@@ -29,7 +29,7 @@ def generate_similar_domains(domain, num_domains = 10):
 
 def check_domain_availability(domain):
     api_key = 'your_api_key'
-    api_secret = 'your_secret'
+    api_secret = 'your_api_secret'
 
     headers = {
         'Authorization': f'sso-key {api_key}:{api_secret}',
