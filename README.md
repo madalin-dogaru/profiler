@@ -7,18 +7,49 @@ This will be a target profiling tool used in red teaming exercises. Currently st
 
 Install
 ---
+#### Classic Install
 ##### 1.Clone it:   
 `git clone https://github.com/madalin-dogaru/profiler.git` 
 
 ##### 2.Install requirements:   
   - `pip install -r requirements.txt`   
-  - Install [Holehe](https://github.com/megadose/holehe/tree/master#%EF%B8%8F-installation) (accessible via global path)
+  - Install [Holehe](https://github.com/megadose/holehe/tree/master#%EF%B8%8F-installation) (must be accessible via global path)
 #   
-#   
-Examples
----
-In the prototyping phase I will leave some hardcoded API authorization tokens in the code(for the lazy ones:)). These are empty test accounts that will be deleted. In the future you will need various APIs for take full advantage of Profiler.   
+#### Docker Build   
+For now you will have to build your image locally, although I created an official image here: `https://hub.docker.com/r/iot41/profiler`, given you need to add you api keys either I change the profiler to accept API keys via cli parameters or environment variables, not happy with either of them, still searching for more elegant solutions.    
+1. `git clone https://github.com/madalin-dogaru/profiler.git`
+2. `cd profiler`
+3. Add your API keys/secrets in `dorks_search.py` and `godaddy_search.py`
+4. Build the docker image:
+```
+docker build -t profiler:0.1 .
+[+] Building 5.8s (10/10) FINISHED                                                                                                                           
+ => [internal] load build definition from Dockerfile                                                                                                    0.0s
+ => => transferring dockerfile: 722B                                                                                                                    0.0s
+ => [internal] load .dockerignore                                                                                                                       0.0s
+ => => transferring context: 2B                                                                                                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3.11                                                                                          2.2s
+ => [auth] library/python:pull token for registry-1.docker.io                                                                                           0.0s
+ => [1/4] FROM docker.io/library/python:3.11@sha256:2dd2f9000021839e8fba0debd8a2308c7e26f95fdfbc0c728eeb0b5b9a8c6a39                                    0.0s
+ => [internal] load build context                                                                                                                       0.0s
+ => => transferring context: 303.03kB                                                                                                                   0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                                                           0.0s
+ => [3/4] COPY . /app                                                                                                                                   0.0s
+ => [4/4] RUN pip install --no-cache-dir -r requirements.txt                                                                                            3.4s
+ => exporting to image                                                                                                                                  0.1s 
+ => => exporting layers                                                                                                                                 0.1s 
+ => => writing image sha256:1143d5dc1a7445fa8368e9fc95d934149274ad08f6b9ef09f489b1713f7db61f                                                            0.0s 
+ => => naming to docker.io/library/profiler:0.1
+```
+5. When using features that require local files, you need to mount the file and then use it. Example below:   
+```
+docker run -v /Users/User/tools/dorks_example_file:/app/dorks_example_file profiler:0.1 python profiler.py -dork samsung.com -f /app/dorks_example_file
+```
 
+
+
+Examples
+---  
 #### -mails   
 Use the power of Holehe to check on what websites a user created accounts. I've added functionality so a list of emails can be specified from a file and the results are filtered to show only valid accounts.    
 <img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/account_check.png?raw=true" width="350" height="700" /> 
