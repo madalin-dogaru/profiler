@@ -20,6 +20,7 @@ from holehe import EmailProfiler, EmailProfilerCSV
 from username_search import UsernameProfiler
 
 
+
 # Function for parsing command line arguments
 def parse_arguments():
     parser = ColoredArgumentParser(description='Get IP information and save to a file.')
@@ -38,6 +39,7 @@ def parse_arguments():
     parser.add_argument('-mails', help='Specify a file containing the emails to be profiled.')
     parser.add_argument('-om', '--format-csv', help='Output mails results in CSV format')
     parser.add_argument('-u', '--username', help='Username to search')
+    parser.add_argument('-v', '--verbose', help='Verbose mode, display errors', action='store_true')
 
     return parser.parse_args()
 
@@ -68,6 +70,7 @@ def main():
     email_file = args.mails
     format_csv = args.format_csv
     username = args.username
+    verbose = args.verbose
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -125,7 +128,7 @@ def main():
         process_url_scan(folder_path, output_handle)
 
     elif username:
-        UsernameProfiler(username).run()
+        UsernameProfiler(username).run(verbose)
 
     elif args.daddy:
         query_similar_domains(args.daddy)

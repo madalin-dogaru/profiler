@@ -9,52 +9,52 @@ License: GPLv3
 Description: A Red Teaming tool focused on profiling the target.
 """
 
-import argparse
-import concurrent.futures
 import requests
 import json
+import concurrent.futures
+from termcolor import colored
+import os
 
 class UsernameProfiler:
-    def __init__(self, username):
+    def __init__(self, username, verbose=False):
         self.username = username
-        self.url = "https://raw.githubusercontent.com/WebBreacher/WhatsMyName/main/wmn-data.json"
+        self.verbose = verbose
 
-    def make_request(self, url, account):
-        url = url.replace("{account}", account)
+    @staticmethod
+    def load_websites():
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        assets_dir = os.path.join(current_dir, 'assets')
+        with open(os.path.join(assets_dir, 'websites.json')) as file:
+            data = json.load(file)
+        return data["sites"]
+
+    def check_username(self, username, site):
+        uri = site['uri_check'].replace('{account}', username)
         try:
-            response = requests.get(url)
-        except requests.exceptions.RequestException:
-            return 0, 0
-        return response.status_code, response.text
+            response = requests.get(uri, timeout=5) # Add timeout to prevent hanging requests
 
-    def process_site(self, site):
-        name = site["name"]
-        uri_check = site["uri_check"].replace("{account}", self.username)
-        cat = site["cat"]
+            if site['e_code'] == response.status_code:
+                if site['e_string'] in response.text:
+                    print(f"{site['name']}:{uri}")
+        except requests.exceptions.RequestException as e:
+            if self.verbose:
+                print(f"An error occurred when checking {site['name']}: {str(e)}")
+        except requests.exceptions.SSLError as e:
+            if self.verbose:
+                print(f"An SSL error occurred when checking {site['name']}: {str(e)}")
+        except Exception as e:
+            if self.verbose:
+                print(f"An unexpected error occurred when checking {site['name']}: {str(e)}")
 
-        status_code, response_text = self.make_request(uri_check, self.username)
+    def run(self, verbose=False):
+        self.verbose = verbose
+        websites = self.load_websites()
+        executor = concurrent.futures.ThreadPoolExecutor()
 
-        if status_code == 200:
-            return name, cat, uri_check
-        else:
-            return None
-
-    def run(self):
-        response = requests.get(self.url)
-        data = json.loads(response.text)
-
-        sites = data["sites"]
-
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            results = [executor.submit(self.process_site, site) for site in sites]
-            try:
-                for future in concurrent.futures.as_completed(results):
-                    result = future.result()
-                    if result:
-                        name, cat, uri_check = result
-                        print("Name:", name)
-                        print("Category:", cat)
-                        print("URI Check:", uri_check)
-                        print()
-            except KeyboardInterrupt:
-                print("Program interrupted. Exiting...")
+        try:
+            list(executor.map(lambda site: self.check_username(self.username, site), websites))
+        except KeyboardInterrupt:
+            executor.shutdown(wait=False)
+            print(colored(f"Program interrupted. Exiting...", 'red'))
+        finally:
+            executor.shutdown(wait=True)
