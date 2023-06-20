@@ -6,6 +6,7 @@ Discord: techblade.
 Date: 25-03-2023
 Version: v0.1
 License: GPLv3
+Used WhatsMyName's source file: https://github.com/WebBreacher/WhatsMyName/blob/main/wmn-data.json
 Description: A Red Teaming tool focused on profiling the target.
 """
 
