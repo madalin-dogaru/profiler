@@ -105,7 +105,7 @@ class EmailProfilerCSV:
             row = [email]
             for domain in header[1:]:
                 if domain in domains:
-                    row.append('x')
+                    row.append(domain)
                 else:
                     row.append('')
             rows.append(row)
