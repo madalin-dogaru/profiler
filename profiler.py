@@ -17,7 +17,7 @@ from termcolor import colored
 from godaddy_search import query_similar_domains
 from dorks_search import google_dork
 from holehe import EmailProfiler, EmailProfilerCSV
-
+from username_search import UsernameProfiler
 
 
 # Function for parsing command line arguments
@@ -37,6 +37,7 @@ def parse_arguments():
     parser.add_argument('-f', help='Specify a file containing Google dorks (one per line).')
     parser.add_argument('-mails', help='Specify a file containing the emails to be profiled.')
     parser.add_argument('-om', '--format-csv', help='Output mails results in CSV format')
+    parser.add_argument('-u', '--username', help='Username to search')
 
     return parser.parse_args()
 
@@ -66,6 +67,7 @@ def main():
     gdork_file = args.f
     email_file = args.mails
     format_csv = args.format_csv
+    username = args.username
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -121,6 +123,9 @@ def main():
                     output_handle.flush()
     elif folder_path:
         process_url_scan(folder_path, output_handle)
+
+    elif username:
+        UsernameProfiler(username).run()
 
     elif args.daddy:
         query_similar_domains(args.daddy)
