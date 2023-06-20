@@ -77,6 +77,10 @@ Read firstname/lastname from a file(1 pair per line) and the email domain and ou
 Supply a domain and get other available suffixes on goddady.com (requires API token).   
 `python3 profiler.py -daddy microsoft.com`
 
+#### -u :
+Supply a username and get a list of websites where the username exists
+`python3 profiler.py -u USERNAME`
+
 #### -domphish :
 Supply a domain and get similarly looking domains for that domain and suffix that are available on godaddy.com. (requires API token)   
 `python3 profiler.py -domphish microsoft.com`
