@@ -40,6 +40,7 @@ def parse_arguments():
     parser.add_argument('-om', '--format-csv', help='Output mails results in CSV format')
     parser.add_argument('-u', '--username', help='Username to search')
     parser.add_argument('-v', '--verbose', help='Verbose mode, display errors', action='store_true')
+    parser.add_argument('-be', '--binary-edge', type=str, help='The target IP address for the BinaryEdge API.')
 
     return parser.parse_args()
 
@@ -71,6 +72,7 @@ def main():
     format_csv = args.format_csv
     username = args.username
     verbose = args.verbose
+    binary_edge_ip = args.binary_edge
     
     output_handle = open(output_file, "w") if output_file else None
 
@@ -136,6 +138,12 @@ def main():
     elif gdork_domain and gdork_file:
         google_dork(gdork_domain, gdork_file)
 
+    elif binary_edge_ip:
+        from binaryedge import BinaryEdgeAPI
+        be_api = BinaryEdgeAPI('your_binary_edge_api_token') # replace with your actual token
+        host_details = be_api.get_host_details(binary_edge_ip)
+        formatted_data = be_api.format_data(host_details)
+        print(formatted_data)
 
     if email_file:
         if format_csv:
