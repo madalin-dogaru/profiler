@@ -64,6 +64,10 @@ Perform powerful Google dorks searches using SerpApi integration: You need to su
 <img align="center" alt="PNG" src="https://github.com/madalin-dogaru/madalin-dogaru/blob/master/google_dork_example.png?raw=true" width="650" height="430" />   
 
 
+#### -be : 
+Integration with BinaryEdge's API to get data about a target IP (results types/format are still WIP)   
+`python3 profiler.py -be 212.93.143.54`
+
 
 #### -url : 
 Scan all the files inside a folder for URLs and print them in the terminal. Or add -o and give it a file to the write the info in.    
